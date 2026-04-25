@@ -82,7 +82,7 @@ CREATE TABLE `ordens_servico` (
 INSERT INTO `ordens_servico` (`id`, `cliente_id`, `veiculo_id`, `descricao_problema`, `servico_realizado`, `valor_pecas`, `valor_mao_de_obra`, `status`, `data_emissao`, `mecanico_id`, `observacoes_mecanico`, `servicos_executados`, `pecas_substituidas`, `data_saida`, `data_entrada`) VALUES
 (10, 8, 8, 'problema  na bateria', NULL, 0.00, 250.00, 'Finalizada', '2026-04-12 23:02:22', 6, '', 'troca da bateria', '1 bateria ', '2026-04-12 20:03:55', '2026-04-12 20:02:22'),
 (11, 3, 3, 'akjfkdsjkfdfdfd', NULL, 0.00, 0.00, '', '2026-04-21 19:26:10', 6, '', 'sdfsdsssfsds', '1, erefd', NULL, '2026-04-21 16:26:10'),
-(12, 10, 9, 'cliente relatou que pneu esta com defeito', NULL, 0.00, 650.00, 'Finalizada', '2026-04-21 19:50:18', 8, '', 'foi trocado o cubo e rolamento do veiculo ', '1 cubo , 1 rolamento celta ', '2026-04-21 16:53:13', '2026-04-21 16:50:18'),
+(12, 10, 9, 'cliente relatou que pneu esta com defeito', NULL, 0.00, 650.00, 'Finalizada', '2026-04-21 19:50:18', 8, '', 'foi trocado o cubo e rolamento veiculo ', '1 cubo , 1 rolamento celta ', '2026-04-21 16:53:13', '2026-04-21 16:50:18'),
 (13, 8, 8, 'rolamento solto', NULL, 0.00, 500.00, 'Finalizada', '2026-04-21 20:22:01', 8, '', 'foi trocado a roda dianteira essquerda...', '1 roda , 1 rolamento', '2026-04-21 17:25:22', '2026-04-21 17:22:01');
 
 -- --------------------------------------------------------
