@@ -22,6 +22,7 @@ Os modelos produzidos visam atender, prioritariamente, aos seguintes requisitos:
 
 ### Modelo de Dados (MER)
 Representa a arquitetura do banco de dados MySQL, demonstrando o relacionamento entre as tabelas de usuários, veículos e ordens de serviço.
+
 ![Modelo de Dados](./banco.png)
 
 ### Protótipo de Interface
