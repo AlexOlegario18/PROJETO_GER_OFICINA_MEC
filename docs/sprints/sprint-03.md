@@ -5,6 +5,7 @@
 * EDSON MATEUS GONÇALVES
 * MARIA LINA DA SILVA
 * LUCAS DE JESUS GONÇALVES
+* PEDRO OTAVIO DE CARVALHO NUNES
 
 ## 1. Definição da Aplicação
 O sistema "Oficina 2.0" é uma solução web focada na gestão e controle de Ordens de Serviço (OS). O objetivo principal é digitalizar o fluxo de trabalho, garantindo que nenhum serviço seja finalizado sem a devida conferência administrativa.
