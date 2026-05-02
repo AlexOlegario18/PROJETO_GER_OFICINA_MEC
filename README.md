@@ -7,6 +7,7 @@ Sistema para gerenciamento de ordens de serviço e fluxo de trabalho para oficin
 * **EDSON MATEUS GONÇALVES**
 * **MARIA LINA DA SILVA**
 * **LUCAS DE JESUS GONÇALVES**
+*  **PEDRO OTAVIO DE CARVALHO NUNES**
 
 ---
 
