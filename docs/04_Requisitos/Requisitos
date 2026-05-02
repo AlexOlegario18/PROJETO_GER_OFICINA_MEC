@@ -68,5 +68,6 @@ Os requisitos foram identificados através da **análise do problema** de comuni
 | Erro na precificação final | PB06 | RF05 | UC: Definir Valor e Finalizar |
 | Falta de rastreio do status | PB04 | RF03 | UC: Consultar Status OS |
 
+
 ## 8. Modelagem Visual
-![Diagrama de Caso de Uso](./diagrama_caso_de_uso.png)
+![Diagrama de Caso de Uso](/docs/04_Requisitos/diagrama_caso_de_uso.png)
