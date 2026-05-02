@@ -19,6 +19,7 @@ O sistema é uma aplicação web voltada para a gestão de oficinas mecânicas. 
 
 ### 3.1. Modelo de Dados (MER)
 Representa a arquitetura do banco de dados MySQL, demonstrando o relacionamento entre as tabelas de usuários, veículos e ordens de serviço.
+
 ![Modelo de Dados](./banco.png)
 
 ### 3.2. Protótipo de Interface
