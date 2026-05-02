@@ -24,6 +24,7 @@ Representa a arquitetura do banco de dados MySQL, demonstrando o relacionamento 
 
 ### 3.2. Protótipo de Interface
 Representa o front-end em React, destacando a visualização das OS com status "Aguardando Aprovação" (identificadas pela cor roxa no sistema).
+
 ![Tela do Sistema](./tela.png)
 
 ### 3.3. Diagrama de Transição de Estados (Opcional/Adicional)
