@@ -1,64 +1,28 @@
 # Sprint 3 – Modelagem do Sistema
 
-## 👥 Alunos
-* ALEXSANDER DAVI NAVES OLEGÁRIO (Líder)
-* EDSON MATEUS GONÇALVES
-* MARIA LINA DA SILVA
-* LUCAS DE JESUS GONÇALVES
-* PEDRO OTAVIO DE CARVALHO NUNES
+## Objetivo
+Representar a solução "Gestão de Oficina 2.0" por meio de modelos técnicos estruturados que auxiliem a compreensão do fluxo de Ordens de Serviço (OS) e apoiem as decisões de desenvolvimento front-end (React) e back-end (Node.js/MySQL).
 
-## 1. Objetivo
-Representar a solução "Oficina 2.0" por meio de modelos técnicos que auxiliem a compreensão do fluxo de Ordens de Serviço (OS) e apoiem as decisões de desenvolvimento front-end e back-end, focando na transição de status e integridade dos dados.
+## Modelos produzidos
+* **Diagrama de Casos de Uso:** Mapeamento das permissões e interações do Mecânico (abertura de OS e lançamento de insumos) e do Administrador (auditoria, filtros e fechamento financeiro).
+* **Diagrama de Componentes:** Estruturação da arquitetura em camadas, separando o Front-end reativo, a API de rotas do Back-end e a persistência de dados.
+* **Modelo de Dados:** Estrutura relacional do banco de dados MariaDB/MySQL, contendo as tabelas `usuarios`, `clientes`, `veiculos` e `ordens_servico` com suas respectivas chaves primárias e estrangeiras.
+* **Diagrama de Sequência:** Detalhamento do ciclo de vida e transição de estados da OS: *Aberta ➔ Em Andamento ➔ Aguardando Aprovação (Status Roxo) ➔ Finalizada*, garantindo a regra de que uma OS não pula de "Em Andamento" direto para "Finalizada" sem revisão do Admin.
 
-## 2. Visão Geral do Sistema
-O sistema é uma aplicação web voltada para a gestão de oficinas mecânicas. Ele separa as responsabilidades entre o técnico (Mecânico), que realiza o laudo, e o gestor (Administrador), que valida o serviço e realiza o fechamento financeiro.
+## Relação com os requisitos
 
----
+| Requisito | Modelo Correspondente | Justificativa |
+| :--- | :--- | :--- |
+| **RF01:** Alteração para "Aguardando Aprovação" | Diagrama de Sequência / Componentes | Valida a regra de negócio e a trava visual do status roxo no fluxo do sistema. |
+| **RF02:** Persistência de peças e serviços | Modelo de Dados | Garante a integridade, relacionamentos e consistência das tabelas no banco de dados. |
+| **RF03:** Dashboard do Administrador | Diagrama de Casos de Uso | Demonstra as permissões exclusivas do gestor para filtrar status e auditar o pátio. |
 
-## 3. Modelos Produzidos
+## Refinamentos realizados no backlog
+Com base na modelagem do fluxo de aprovação, a história de usuário principal foi detalhada para refletir a regra do status intermediário:
+* **História Original:** *"Como mecânico, quero finalizar a OS."*
+* **História Atualizada/Refinada:** *"Como mecânico, quero enviar a Ordem de Serviço para aprovação, para que o administrador revise as peças utilizadas e valide o orçamento final, garantindo a transição obrigatória para o status 'Aguardando Aprovação' antes do encerramento."*
 
-### 3.1. Modelo de Dados (MER)
-Representa a arquitetura do banco de dados MySQL, demonstrando o relacionamento entre as tabelas de usuários, veículos e ordens de serviço.
-
-![Modelo de Dados](./banco.png)
-
-### 3.2. Protótipo de Interface
-Representa o front-end em React, destacando a visualização das OS com status "Aguardando Aprovação" (identificadas pela cor roxa no sistema).
-
-![Tela do Sistema](./tela.png)
-
-### 3.3. Diagrama de Transição de Estados (Opcional/Adicional)
-Este modelo detalha o ciclo de vida de uma Ordem de Serviço dentro do sistema, garantindo que o fluxo de aprovação seja respeitado.
-
-* **Fluxo:** Aberta ➔ Em Andamento ➔ Aguardando Aprovação (Revisão) ➔ Finalizada.
-* **Regra:** Uma OS não pode saltar de "Em Andamento" direto para "Finalizada" sem passar pela revisão administrativa.
----
-
-## 4. Relação entre Requisitos e Modelos
-
-| Requisito | Modelo Relacionado | Justificativa |
-|---|---|---|
-| **RF01:** Alteração para "Aguardando Aprovação" | Protótipo de Interface | Valida a interação do usuário com a nova regra de negócio visual. |
-| **RF02:** Persistência de peças e serviços | Modelo de Dados (MER) | Garante a integridade e persistência das informações no MySQL. |
-| **RF03:** Dashboard do Administrador | Protótipo / Casos de Uso | Demonstra a visão do gestor para auditoria e filtros de status. |
-
----
-
-## 5. Descrição Textual Complementar
-* **Modelo de Dados:** Estruturado para suportar o histórico de manutenções, vinculando cada OS a um veículo e a um cliente específico, permitindo auditoria de quem executou o serviço.
-* **Protótipo:** Focado em usabilidade, utiliza o código de cores para reduzir o erro humano, impedindo que o administrador esqueça de revisar serviços finalizados pelo pátio.
-
----
-
-## 6. Refinamento do Backlog
-Após a modelagem, a história de usuário principal foi detalhada:
-* **Item original:** "Como mecânico, quero finalizar a OS".
-* **Item refinado:** "Como mecânico, quero enviar a OS para aprovação, para que o administrador revise as peças utilizadas e defina o valor final, garantindo o status intermediário de 'Aguardando Aprovação'."
-
----
-
-## 7. Revisão da Sprint
-* **O que foi concluído:** Estruturação do banco de dados MySQL, criação das rotas de status no Node.js e integração visual no React.
-* **Decisões tomadas:** Uso da cor roxa para diferenciar estados pendentes de revisão administrativa.
-* **Dificuldades:** Sincronização dos estados do banco com a atualização em tempo real do dashboard.
-* **Próximos passos:** Implementar módulo de fechamento financeiro e geração de relatório para o cliente.
+## Revisão da sprint
+* **O que foi feito:** Modelagem e estruturação do banco de dados MySQL, criação das rotas de status no Node.js e renderização condicional de estados no React (sinalização na cor roxa).
+* **Decisões tomadas:** Definição da cor roxa como padrão visual para identificar ordens pendentes de auditoria do administrador.
+* **Próximos passos:** Implementar as travas de segurança finais no backend para impedir que o perfil de mecânico force a finalização de uma OS sem aprovação, e iniciar o módulo de fechamento financeiro.
