@@ -23,11 +23,14 @@ export const LoginCard = styled.div`
 
 export const Title = styled.h1`
   color: #e3e6ea;
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  line-height: 1.2;
   font-weight: 800;
   margin-bottom: 2rem;
   text-align: center;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  white-space: normal;
+  word-break: break-word;
 `;
 
 export const ErrorAlert = styled.div`

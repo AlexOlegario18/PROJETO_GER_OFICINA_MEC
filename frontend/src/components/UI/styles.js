@@ -8,7 +8,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const Label = styled.label`
-  color: #1a2233;
+  color: #f4f7fb;
   font-weight: 600;
   margin-bottom: 0.5rem;
   letter-spacing: 0.5px;
