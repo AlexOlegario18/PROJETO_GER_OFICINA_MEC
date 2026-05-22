@@ -1,4 +1,4 @@
-const db = require('../config/db');
+const { pool } = require('./config/db');
 
 // --- 1. CRIAR NOVA OS ---
 exports.criarOS = (req, res) => {
@@ -21,7 +21,7 @@ exports.criarOS = (req, res) => {
         parseFloat(valor_total) || 0 
     ];
 
-    db.query(sql, valores, (err, result) => {
+    pool.query(sql, valores, (err, result) => {
         if (err) {
             console.error("❌ Erro ao criar OS:", err.message);
             return res.status(500).json({ error: err.message });
@@ -52,7 +52,7 @@ exports.listarOS = (req, res) => {
 
     sql += " ORDER BY os.id DESC";
 
-    db.query(sql, params, (err, results) => {
+    pool.query(sql, params, (err, results) => {
         if (err) {
             console.error("❌ Erro ao buscar OS:", err);
             return res.status(500).json({ error: "Erro ao listar ordens de serviço" });
@@ -91,7 +91,7 @@ exports.atualizarProgresso = (req, res) => {
         id
     ];
 
-    db.query(sql, valores, (err, result) => {
+    pool.query(sql, valores, (err, result) => {
         if (err) {
             console.error("❌ Erro SQL ao atualizar:", err.message);
             return res.status(500).json({ error: err.message });
@@ -105,7 +105,7 @@ exports.excluirOS = (req, res) => {
     const { id } = req.params;
     const sql = "DELETE FROM ordens_servico WHERE id = ?";
     
-    db.query(sql, [id], (err, result) => {
+    pool.query(sql, [id], (err, result) => {
         if (err) {
             console.error("❌ Erro ao excluir OS:", err);
             return res.status(500).json({ error: "Erro ao excluir a OS do banco de dados." });
@@ -124,7 +124,7 @@ exports.historicoPorCliente = (req, res) => {
         WHERE os.cliente_id = ?
         ORDER BY os.id DESC
     `;
-    db.query(sql, [clienteId], (err, results) => {
+    pool.query(sql, [clienteId], (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
         res.json(results);
     });
