@@ -66,6 +66,7 @@ exports.listarTodosVeiculos = (req, res) => {
       v.placa, 
       v.marca, 
       v.modelo, 
+      v.cliente_id,
       c.nome, 
       c.telefone 
     FROM veiculos v
