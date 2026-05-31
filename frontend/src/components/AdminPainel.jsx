@@ -1,146 +1,114 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from './ui/Button';
+import Card from './ui/Card';
 import CadastroAba from './Abas/CadastroAba';
-import FrotaAba from './Abas/FrotaAba'; 
+import FrotaAba from './Abas/FrotaAba';
 import UsuariosAba from './Abas/UsuariosAba';
-import NovaOSAba from './Abas/NovaOSAba'; 
-import GestaoOSAba from './Abas/GestaoOSAba'; 
-import RelatoriosAba from './Abas/RelatoriosAba'; // 1. IMPORTADO COM SUCESSO
+import NovaOSAba from './Abas/NovaOSAba';
+import GestaoOSAba from './Abas/GestaoOSAba';
+import RelatoriosAba from './Abas/RelatoriosAba';
 
 const AdminPainel = () => {
   const [abaAtiva, setAbaAtiva] = useState('cadastro');
   const navigate = useNavigate();
 
   const handleSair = () => {
-    localStorage.clear(); 
-    navigate('/'); 
+    localStorage.clear();
+    navigate('/');
   };
 
   const renderConteudo = () => {
     switch (abaAtiva) {
-      case 'cadastro': return <CadastroAba />;
-      case 'nova-os': return <NovaOSAba />;
-      case 'gestao-os': return <GestaoOSAba />;
-      case 'frota': return <FrotaAba />;
-      case 'usuarios': return <UsuariosAba />;
-      case 'relatorios': return <RelatoriosAba />; // 2. RENDERIZANDO A NOVA ABA
-      default: return <CadastroAba />;
+      case 'cadastro':
+        return <CadastroAba />;
+      case 'nova-os':
+        return <NovaOSAba />;
+      case 'gestao-os':
+        return <GestaoOSAba />;
+      case 'frota':
+        return <FrotaAba />;
+      case 'usuarios':
+        return <UsuariosAba />;
+      case 'relatorios':
+        return <RelatoriosAba />;
+      default:
+        return <CadastroAba />;
     }
   };
 
   const getTitulo = () => {
-    switch(abaAtiva) {
-      case 'cadastro': return '🆕 Novo Cadastro de Veículo';
-      case 'nova-os': return '🛠️ Abrir Nova Ordem de Serviço';
-      case 'gestao-os': return '📊 Painel de OS (Gestão da Oficina)';
-      case 'frota': return '👤 Cadastro de Clientes';
-      case 'usuarios': return '👥 Gerenciar Usuários do Sistema';
-      case 'relatorios': return '📈 Relatórios e Impressão de OS'; // 3. TÍTULO ATUALIZADO
-      default: return 'Painel Administrativo';
+    switch (abaAtiva) {
+      case 'cadastro':
+        return 'Novo Cadastro de Veículo';
+      case 'nova-os':
+        return 'Abrir Nova Ordem de Serviço';
+      case 'gestao-os':
+        return 'Painel de OS';
+      case 'frota':
+        return 'Cadastro de Clientes';
+      case 'usuarios':
+        return 'Gerenciar Usuários';
+      case 'relatorios':
+        return 'Relatórios e Impressão de OS';
+      default:
+        return 'Painel Administrativo';
     }
   };
 
+  const menuItems = [
+    { key: 'cadastro', label: 'Novo Cadastro', icon: '⊕' },
+    { key: 'nova-os', label: 'Abrir Nova OS', icon: '🔧' },
+    { key: 'gestao-os', label: 'Painel de OS', icon: '☑' },
+    { key: 'frota', label: 'Cadastro de Cliente', icon: '🚗' },
+    { key: 'usuarios', label: 'Gerenciar Usuários', icon: '👥' },
+    { key: 'relatorios', label: 'Relatórios / Imprimir', icon: '📊' },
+  ];
+
   return (
-    <div style={containerStyle}>
-      {/* SIDEBAR */}
-      <aside style={sidebarStyle}>
-        <div style={{ padding: '20px', textAlign: 'center' }}>
-          <h2 style={{ color: '#fff', margin: 0 }}>⚙️ Oficina Pro</h2>
-          <p style={{ color: '#85929e', fontSize: '12px' }}>Administração</p>
+    <div className="admin-shell">
+      <aside className="sidebar">
+        <div className="sidebar-header">
+          <h2 className="sidebar-title">Oficina Pro</h2>
+          <p className="sidebar-subtitle">Administração</p>
         </div>
-        
-        <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '5px', padding: '0 10px' }}>
-          
-          <button 
-            style={abaAtiva === 'cadastro' ? btnAtivo : btnStyle} 
-            onClick={() => setAbaAtiva('cadastro')}
-          >
-            🆕 NOVO CADASTRO
-          </button>
 
-          <button 
-            style={abaAtiva === 'nova-os' ? btnAtivo : btnStyle} 
-            onClick={() => setAbaAtiva('nova-os')}
-          >
-            🛠️ ABRIR NOVA OS
-          </button>
-
-          <button 
-            style={abaAtiva === 'gestao-os' ? btnAtivo : btnStyle} 
-            onClick={() => setAbaAtiva('gestao-os')}
-          >
-            📊 PAINEL DE OS
-          </button>
-
-          <button 
-            style={abaAtiva === 'frota' ? btnAtivo : btnStyle} 
-            onClick={() => setAbaAtiva('frota')}
-          >
-            👤 CADASTRO DE CLIENTE
-          </button>
-
-          <button 
-            style={abaAtiva === 'usuarios' ? btnAtivo : btnStyle} 
-            onClick={() => setAbaAtiva('usuarios')}
-          >
-            👥 GERENCIAR USUÁRIOS
-          </button>
-
-          {/* 4. NOVO BOTÃO DE RELATÓRIOS ADICIONADO AQUI */}
-          <button 
-            style={abaAtiva === 'relatorios' ? btnAtivo : btnStyle} 
-            onClick={() => setAbaAtiva('relatorios')}
-          >
-            📈 RELATÓRIOS / IMPRIMIR
-          </button>
-
+        <nav className="sidebar-nav">
+          {menuItems.map((item) => (
+            <button
+              key={item.key}
+              type="button"
+              className={`sidebar-button ${abaAtiva === item.key ? 'active' : ''}`}
+              onClick={() => setAbaAtiva(item.key)}
+            >
+              <span style={{ fontSize: '18px', marginRight: '8px' }}>{item.icon}</span>
+              {item.label}
+            </button>
+          ))}
         </nav>
 
-        {/* BOTÃO SAIR */}
-        <div style={{ padding: '20px', borderTop: '1px solid #3e4f5f' }}>
-          <button onClick={handleSair} style={btnSair}>
+        <div className="sidebar-footer">
+          <Button variant="danger" className="button--full-width" onClick={handleSair}>
             🚪 Sair do Sistema
-          </button>
+          </Button>
         </div>
       </aside>
-      
-      {/* CONTEÚDO PRINCIPAL */}
-      <main style={mainStyle}>
-        <div style={headerInterno}>
-          <h3 style={{ margin: 0, color: '#2c3e50' }}>
-            {getTitulo()}
-          </h3>
-          <span style={{ fontSize: '13px', color: '#7f8c8d' }}>
-            Menu Principal / {abaAtiva.toUpperCase()}
-          </span>
+
+      <main className="admin-main">
+        <div className="admin-header">
+          <div>
+            <h3 className="admin-title">{getTitulo()}</h3>
+            <p className="admin-subtitle">Menu Principal / {abaAtiva.toUpperCase()}</p>
+          </div>
         </div>
 
-        <div style={contentCard}>
-          {renderConteudo()}
+        <div className="admin-content">
+          <Card className="admin-card">{renderConteudo()}</Card>
         </div>
       </main>
     </div>
   );
 };
 
-// --- ESTILOS MANTIDOS ---
-const containerStyle = { display: 'flex', height: '100vh', backgroundColor: '#f0f2f5', fontFamily: 'sans-serif' };
-const sidebarStyle = { width: '260px', backgroundColor: '#2c3e50', display: 'flex', flexDirection: 'column', boxShadow: '2px 0 5px rgba(0,0,0,0.1)' };
-const mainStyle = { flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' };
-const headerInterno = { backgroundColor: '#fff', padding: '15px 30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #dee2e6' };
-const contentCard = { flex: 1, padding: '30px', overflowY: 'auto' };
-
-const btnStyle = { 
-  padding: '14px 20px', cursor: 'pointer', border: 'none', borderRadius: '8px', 
-  backgroundColor: 'transparent', color: '#bdc3c7', textAlign: 'left', 
-  fontSize: '13px', transition: '0.2s', fontWeight: 'bold', letterSpacing: '0.5px'
-};
-const btnAtivo = { ...btnStyle, backgroundColor: '#3498db', color: '#fff' };
-
-const btnSair = { 
-  width: '100%', padding: '12px', cursor: 'pointer', border: '1px solid #e74c3c', 
-  borderRadius: '8px', backgroundColor: 'transparent', color: '#e74c3c', 
-  fontWeight: 'bold', transition: '0.3s' 
-};
-
 export default AdminPainel;
+
