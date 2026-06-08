@@ -3,7 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-const osControllers = require('./osControllers');
+const osControllers = require('./controllers/osControllers');
 
 const app = express();
 app.use(cors());
