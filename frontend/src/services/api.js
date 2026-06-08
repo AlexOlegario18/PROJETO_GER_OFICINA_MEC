@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001' // <--- Deve ser a mesma porta do index.js
+  baseURL: 'https://server-zb16.onrender.com' // atualizado para Render
 });
 
 export default api;

@@ -17,7 +17,12 @@ app.put('/os/:id', osControllers.atualizarProgresso);
 app.delete('/os/:id', osControllers.excluirOS);
 app.get('/os/cliente/:clienteId', osControllers.historicoPorCliente);
 
+// Copie e cole isso no final do arquivo principal do seu BACKEND
+
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
-  console.log(`Servidor backend rodando na porta ${PORT}`);
+
+    console.log(`Servidor rodando na porta ${PORT}`);
+
 });
