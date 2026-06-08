@@ -1,0 +1,54 @@
+.btnBase {
+  border: none;
+  border-radius: var(--radius-md);
+  min-height: 44px;
+  padding: 0 var(--spacing-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.2;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btnBase:hover {
+  transform: translateY(-1px);
+}
+
+.btnBase:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.24);
+}
+
+.btnBrand {
+  color: #ffffff;
+  background: var(--color-brand);
+}
+
+.btnBrand:hover {
+  background: var(--color-brand-hover);
+}
+
+.btnSuccess {
+  color: #ffffff;
+  background: var(--color-success);
+}
+
+.btnSuccess:hover {
+  background: var(--color-success-hover);
+}
+
+.btnWarning {
+  color: #111827;
+  background: var(--color-warning);
+}
+
+.btnWarning:hover {
+  background: var(--color-warning-hover);
+}
