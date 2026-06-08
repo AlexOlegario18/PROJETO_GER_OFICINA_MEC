@@ -4,7 +4,11 @@
   "outputDirectory": "frontend/dist",
   "routes": [
     {
-      "src": "/(?!api/).*",
+      "src": "/(.*\\.(js|css|map|png|jpg|jpeg|gif|svg|ico|json))",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
       "dest": "/index.html"
     }
   ]
