@@ -35,7 +35,6 @@ pool.getConnection((err, connection) => {
   }
 });
 
-module.exports = {
-  pool,
-  promisePool
-};
+pool.promisePool = promisePool;
+pool.pool = pool;
+module.exports = pool;
