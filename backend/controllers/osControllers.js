@@ -1,4 +1,4 @@
-const { pool } = require('./config/db');
+const { pool } = require('../config/db');
 
 // --- 1. CRIAR NOVA OS ---
 exports.criarOS = (req, res) => {
