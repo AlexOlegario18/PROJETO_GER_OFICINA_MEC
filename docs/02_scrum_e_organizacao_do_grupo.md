@@ -1,10 +1,10 @@
 # 02. Scrum e Organização do Grupo
 
-## 1. Integrantes
+### ## 1. Integrantes
 | Nome | Papel no Scrum | Responsabilidades principais |
 |---|---|---|
-| **Alexsander Davi Naves Olegário** | Product Owner | Liderança do projeto, definição de requisitos técnicos e validação do fluxo de trabalho. |
-| **Edson Mateus Gonçalves** | Scrum Master | Organização do repositório GitHub e facilitação da comunicação entre os membros. |
+| **Alexsander Davi Naves Olegário** | Scrum Master | Liderança do projeto, definição de requisitos técnicos e validação do fluxo de trabalho. |
+| **Edson Mateus Gonçalves** | Product Owner | Organização do repositório GitHub e facilitação da comunicação entre os membros. |
 | **Maria Lina da Silva** | Dev Team | Desenvolvimento de componentes React e estilização da interface. |
 | **Lucas de Jesus Gonçalves** | Dev Team | Lógica de Back-end, rotas da API e integração com o Banco de Dados. |
 | **Pedro Otavio de Carvalho Nunes** | Dev Team | Documentação técnica, revisão de código e testes funcionais. |
