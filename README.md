@@ -21,7 +21,7 @@ Para garantir a segurança e a integridade da aplicação, os links diretos de a
 * **Docente:** Prof. Dr. Johnatan Alves de Oliveira
 
 ### 👥 Integrantes do Grupo 
-* **ALEXSANDER DAVI NAVES OLEGÁRIO** — Scrum Master & Backend Developer
+* **ALEXSANDER DAVI NAVES OLEGÁRIO** — Scrum Master &Full-stack Developer
 * **EDSON MATEUS GONÇALVES** — Product Owner & Frontend Developer
 * **MARIA LINA DA SILVA** — Full-Stack Developer & Documentação
 * **LUCAS DE JESUS GONÇALVES** — Quality Assurance (Testes) & DBA
