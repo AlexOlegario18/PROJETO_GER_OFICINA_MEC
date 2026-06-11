@@ -20,7 +20,7 @@ Para garantir a segurança e a integridade da aplicação, os links diretos de a
 * **Turma/Semestre:** Engenharia de Software (GAC188 - 2026/1)
 * **Docente:** Prof. Dr. Johnatan Alves de Oliveira
 
-### 👥 Integrantes do Grupo e Papéis Scrum
+### 👥 Integrantes do Grupo 
 * **ALEXSANDER DAVI NAVES OLEGÁRIO** — Scrum Master & Backend Developer
 * **EDSON MATEUS GONÇALVES** — Product Owner & Frontend Developer
 * **MARIA LINA DA SILVA** — Full-Stack Developer & Documentação
