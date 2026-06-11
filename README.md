@@ -1,4 +1,4 @@
-# 🛠️ GESTÃO DE OFICINA 2.0
+# 🛠️ Sistema de Oficina
 
 Sistema para gerenciamento de ordens de serviço e fluxo de trabalho para oficinas mecânicas.
 
