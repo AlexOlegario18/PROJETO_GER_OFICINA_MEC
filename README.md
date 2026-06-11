@@ -43,6 +43,8 @@ O projeto foi construído e evoluiu por meio de **entregas incrementais (4 Sprin
 
 ## 3. Estrutura e Organização do Repositório
 O repositório está organizado de forma a separar claramente a documentação do Scrum, os relatórios acadêmicos e o código-fonte da aplicação:
+
+```text
 .
 ├── README.md                           # Este arquivo de identificação e guia do projeto
 ├── .gitignore                          # Filtro de arquivos locais e credenciais do Node/React
@@ -63,9 +65,9 @@ O repositório está organizado de forma a separar claramente a documentação d
 │   ├── sprint_03.md                    # Planejamento e retrospectiva da Sprint 3
 │   └── sprint_04.md                    # Planejamento e retrospectiva da Sprint 4 (Final)
 └── sistema de oficina/                 # Diretório centralizador do código-fonte
-├── frontend/                       # Aplicação cliente desenvolvida em React.js
-└── backend/                        # API Rest e regras de negócio em Node.js
-
+    ├── frontend/                       # Aplicação cliente desenvolvida em React.js
+    └── backend/                        # API Rest e regras de negócio em Node.js
+```
 ---
 
 ## 4. Fluxo de Trabalho com Scrum
