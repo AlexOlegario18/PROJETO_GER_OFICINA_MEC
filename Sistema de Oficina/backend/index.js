@@ -1,27 +1,30 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
-require('dotenv').config();
 
-const osControllers = require('./controllers/osControllers');
+// 1. IMPORTAR AS ROTAS
 const authRoutes = require('./routes/authRoutes');
+const clienteRoutes = require('./routes/clienteRoutes');
+const osRoutes = require('./routes/osRoutes');
 
 const app = express();
+
+// 2. MIDDLEWARES
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json()); 
 
-app.get('/', (req, res) => res.json({ message: 'API Oficina Mecânica funcionando' }));
-
+// 3. DEFINIR OS PREFIXOS DAS ROTAS
 app.use('/auth', authRoutes);
+app.use('/clientes', clienteRoutes);
+app.use('/os', osRoutes); // Certifique-se que o arquivo existe em ./routes/osRoutes.js
 
-app.post('/os', osControllers.criarOS);
-app.get('/os', osControllers.listarOS);
-app.put('/os/:id', osControllers.atualizarProgresso);
-app.delete('/os/:id', osControllers.excluirOS);
-app.get('/os/cliente/:clienteId', osControllers.historicoPorCliente);
+// Rota de teste
+app.get('/', (req, res) => {
+  res.send("🚀 Servidor da Oficina rodando liso!");
+});
 
-const PORT = process.env.PORT || 3000;
-
+// 4. LIGAR O SERVIDOR (Atualizado para funcionar na Nuvem)
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`✅ Servidor rodando com sucesso!`);
+  console.log(`🔑 Auth: /auth | 🚗 Clientes: /clientes | 🛠️ OS: /os`);
 });

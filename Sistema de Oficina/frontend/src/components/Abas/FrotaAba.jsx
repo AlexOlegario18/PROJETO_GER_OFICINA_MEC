@@ -32,14 +32,24 @@ const FrotaAba = () => {
   };
 
   const handleAbrirEdicao = (cliente) => {
-    setEditando({ ...cliente });
+    // Garante que todas as propriedades fiquem mapeadas com fallback seguro caso venham nulas
+    setEditando({ 
+      ...cliente,
+      ano: cliente.ano || '',
+      cor: cliente.cor || '',
+      km: cliente.km || '',
+      combustivel: cliente.combustivel || '',
+      email: cliente.email || '',
+      endereco: cliente.endereco || '',
+      cpf_cnpj: cliente.cpf_cnpj || cliente.cpf || ''
+    });
   };
 
   const handleSalvarEdicao = async () => {
     try {
       const id = editando.cliente_id || editando.id;
       
-      // Enviando o PACOTE COMPLETO para o backend
+      // Enviando o pacote garantindo os nomes que o backend espera receber
       await api.put(`/clientes/${id}`, {
         nome: editando.nome_cliente || editando.nome,
         cpf_cnpj: editando.cpf_cnpj,
@@ -212,7 +222,7 @@ const FrotaAba = () => {
   );
 };
 
-// --- ESTILOS MANTIDOS E MELHORADOS ---
+// Estilos mantidos conforme original
 const formEdicaoCard = { backgroundColor: '#fff', padding: '25px', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', marginBottom: '20px' };
 const gridForm = { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' };
 const inputStyle = { width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ddd', marginTop: '5px', boxSizing: 'border-box', fontSize: '14px' };

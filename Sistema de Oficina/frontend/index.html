@@ -1,11 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PROJETO_GER_OFICINA_MEC</title>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <title>Oficina Pro - Gestão Automotiva</title>
+    
+    <style>
+      /* Estilos básicos para a tela */
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-color: #f0f2f5;
+        font-family: sans-serif;
+      }
+
+      /* ============================================================
+         CONFIGURAÇÃO MÁXIMA DE IMPRESSÃO 
+         ============================================================ */
+      @media print {
+        /* 1. Esconde TUDO que não for o relatório */
+        aside, nav, button, .no-print, header, .header-interno {
+          display: none !important;
+          visibility: hidden !important;
+        }
+
+        /* 2. Reseta o layout do body para não usar Flexbox/Grid na impressão */
+        body, html, #root, main {
+          background: #fff !important;
+          color: #000 !important;
+          display: block !important;
+          width: 100% !important;
+          height: auto !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          overflow: visible !important;
+        }
+
+        /* 3. Força o relatório a ignorar o posicionamento do React */
+        #relatorio-final {
+          display: block !important;
+          position: absolute !important;
+          left: 0 !important;
+          top: 0 !important;
+          width: 100% !important;
+          z-index: 9999 !important;
+          padding: 20px !important;
+        }
+
+        /* 4. Garante que as tabelas e textos apareçam em preto */
+        table {
+          width: 100% !important;
+          border-collapse: collapse !important;
+          border: 1px solid #000 !important;
+          margin-top: 20px !important;
+        }
+
+        th, td {
+          border: 1px solid #000 !important;
+          padding: 10px !important;
+          color: #000 !important;
+          text-align: left !important;
+        }
+
+        /* 5. Força o navegador a imprimir cores (caso use badges) */
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

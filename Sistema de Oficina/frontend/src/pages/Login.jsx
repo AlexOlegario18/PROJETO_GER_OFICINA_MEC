@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
-import Button from '../components/ui/Button';
-import styles from './Login.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [usuario, setUsuario] = useState('');
@@ -11,93 +9,85 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       const response = await api.post('/auth/login', { usuario, senha });
+      
+      // Esperamos que o backend retorne: { id, nome, tipo }
       const user = response.data;
 
-      if (!user?.tipo) {
-        alert('Erro no servidor: Dados do usuário incompletos.');
-        return;
-      }
+      if (user && user.tipo) {
+        // --- SALVAMENTO ESTRATÉGICO ---
+        
+        // 1. Salvamos o objeto inteiro (boa prática)
+        localStorage.setItem('userLogado', JSON.stringify(user));
 
-      localStorage.setItem('userLogado', JSON.stringify(user));
-      localStorage.setItem('idUsuario', user.id);
-      localStorage.setItem('nomeUsuario', user.nome);
-      localStorage.setItem('tipoUsuario', user.tipo);
+        // 2. Salvamos as chaves individuais que seu MecanicoPainel e Sidebar usam
+        localStorage.setItem('idUsuario', user.id);
+        localStorage.setItem('nomeUsuario', user.nome);
+        localStorage.setItem('tipoUsuario', user.tipo);
 
-      const tipo = user.tipo.toLowerCase();
+        const tipo = user.tipo.toLowerCase();
 
-      if (tipo === 'admin') {
-        navigate('/admin');
-      } else if (tipo === 'mecanico') {
-        navigate('/mecanico');
-      } else if (tipo === 'secretario' || tipo === 'secretaria') {
-        navigate('/secretaria');
+        // --- REDIRECIONAMENTO ---
+        if (tipo === 'admin') {
+          navigate('/admin');
+        } else if (tipo === 'mecanico') {
+          navigate('/mecanico');
+        } else if (tipo === 'secretario' || tipo === 'secretaria') {
+          navigate('/secretaria');
+        } else {
+          alert("Acesso restrito: Tipo de usuário inválido.");
+        }
       } else {
-        alert('Acesso restrito: Tipo de usuário inválido.');
+        alert("Erro no servidor: Dados do usuário incompletos.");
       }
+
     } catch (error) {
-      console.error('Erro no login:', error);
-      alert('❌ Usuário ou senha incorretos!');
+      console.error("Erro no login:", error);
+      alert("❌ Usuário ou senha incorretos!");
     }
   };
 
   return (
-    <div className={styles.container}>
-      <form className={styles.card} onSubmit={handleLogin} noValidate>
-        <div className={styles.titleContainer}>
-          <ion-icon name="build-outline" className={styles.titleIcon} aria-hidden="true" />
-          <h2 className={styles.title}>Sistema de Oficina</h2>
+    <div style={containerStyle}>
+      <form onSubmit={handleLogin} style={cardStyle}>
+        <h2 style={{ textAlign: 'center', color: '#2c3e50', marginBottom: '25px' }}>🛠️ Sistema de Oficina</h2>
+        
+        <div style={{ marginBottom: '15px' }}>
+          <label style={labelStyle}>Usuário:</label>
+          <input 
+            type="text" 
+            style={inputStyle} 
+            value={usuario} 
+            onChange={(e) => setUsuario(e.target.value)} 
+            placeholder="Seu usuário"
+            required 
+          />
         </div>
 
-        <div className={styles.field}>
-          <label htmlFor="usuario-input" className={styles.label}>
-            Usuário
-          </label>
-          <div className={styles.inputGroup}>
-            <ion-icon name="person-outline" className={styles.icon} aria-hidden="true" />
-            <input
-              id="usuario-input"
-              name="usuario"
-              type="text"
-              className={styles.input}
-              value={usuario}
-              onChange={(e) => setUsuario(e.target.value)}
-              placeholder="Seu usuário"
-              autoComplete="username"
-              required
-            />
-          </div>
+        <div style={{ marginBottom: '25px' }}>
+          <label style={labelStyle}>Senha:</label>
+          <input 
+            type="password" 
+            style={inputStyle} 
+            value={senha} 
+            onChange={(e) => setSenha(e.target.value)} 
+            placeholder="******"
+            required 
+          />
         </div>
 
-        <div className={styles.field}>
-          <label htmlFor="senha-input" className={styles.label}>
-            Senha
-          </label>
-          <div className={styles.inputGroup}>
-            <ion-icon name="lock-closed-outline" className={styles.icon} aria-hidden="true" />
-            <input
-              id="senha-input"
-              name="senha"
-              type="password"
-              className={styles.input}
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              placeholder="******"
-              autoComplete="current-password"
-              required
-            />
-          </div>
-        </div>
-
-        <Button variant="brand" type="submit" className={styles.submitButton}>
-          ENTRAR
-        </Button>
+        <button type="submit" style={buttonStyle}>ENTRAR</button>
       </form>
     </div>
   );
 };
 
+// Estilos mantidos e polidos
+const containerStyle = { display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f0f2f5' };
+const cardStyle = { backgroundColor: 'white', padding: '40px', borderRadius: '12px', boxShadow: '0 8px 24px rgba(0,0,0,0.15)', width: '100%', maxWidth: '360px' };
+const labelStyle = { fontWeight: 'bold', fontSize: '14px', color: '#34495e' };
+const inputStyle = { width: '100%', padding: '12px', marginTop: '8px', borderRadius: '6px', border: '1px solid #dcdde1', boxSizing: 'border-box', outline: 'none' };
+const buttonStyle = { width: '100%', padding: '14px', backgroundColor: '#3498db', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', fontSize: '16px' };
 
 export default Login;

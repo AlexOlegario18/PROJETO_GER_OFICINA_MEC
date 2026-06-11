@@ -56,19 +56,26 @@ exports.atualizarCliente = (req, res) => {
     });
 };
 
-// 3. Listar Frota Completa (Atualizado para trazer os novos campos para o Front-end)
+// 3. Listar Frota Completa (CORRIGIDO: Agora traz TODOS os campos para o Front-end)
 // No arquivo controllers/clienteController.js
 exports.listarTodosVeiculos = (req, res) => {
-  // O SQL PRECISA unir as duas tabelas para o nome aparecer
+  // O SQL agora une as duas tabelas trazendo TODOS os dados do cliente e do veículo
   const sql = `
     SELECT 
-      v.id, 
+      c.id AS cliente_id, 
+      c.nome AS nome_cliente, 
+      c.cpf_cnpj, 
+      c.telefone, 
+      c.email, 
+      c.endereco,
+      v.id AS veiculo_id, 
       v.placa, 
       v.marca, 
       v.modelo, 
-      v.cliente_id,
-      c.nome, 
-      c.telefone 
+      v.ano, 
+      v.cor, 
+      v.km, 
+      v.combustivel 
     FROM veiculos v
     INNER JOIN clientes c ON v.cliente_id = c.id
   `;
