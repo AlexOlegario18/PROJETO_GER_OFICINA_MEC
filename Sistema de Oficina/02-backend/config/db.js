@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 
 // Montamos a URL de conexão segura que a Aiven e a Vercel exigem
-const connectionString = 'mysql://avnadmin:AVNS_LUYP_0qUXUevCJegg2C@mysql-1b8ebc75-alexolegariog-69f6.f.aivencloud.com:14792/defaultdb?ssl-mode=REQUIRED';
+const connectionString = 'mysql://avnadmin:xxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
 const db = mysql.createPool({
     uri: connectionString,
